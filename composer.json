@@ -1,0 +1,22 @@
+{
+    "name": "sevavietl/arrays",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "sevavietl",
+            "email": "sevavietl@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Sevavietl\\Arrays\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sevavietl\\Arrays\\Tests": "tests/"
+        }
+    }
+}
