@@ -113,3 +113,24 @@ You can unset nested key.
 ```
 
 After nested manipulations you might want to get back the **real array**. This can be done by calling `$array->toArray()`.
+
+## XPath Key Array
+
+**This is not a real xpath!** This class instead of array-like key users string of keys delimited with `/`.
+
+```php
+    $array = new XPathKeyArray([
+        'foo' => [
+            'bar' => 'baz'
+        ]
+    ]);
+
+    var_dump($array['foo/bar']); // => string(3) "baz"
+```
+
+This one was inspired by [an old article](http://codeaid.net/php/get-values-of-multi-dimensional-arrays-using-xpath-notation).
+
+Compared to `CompositeKeyArray`, `XPathKeyArray` has some limitations:
+
+1. You cannot use keys with `/` in them.
+2. You cannot use `null` as key. 
