@@ -11,7 +11,9 @@ class CompositeKeyArray implements \ArrayAccess
     {
         $this->array = $array;
 
-        $this->undefinedOffsetAction = function ($offset) {
+        $this->undefinedOffsetAction = function ($array, $offset) {
+            $offset = json_encode($offset);
+
             throw new UndefinedOffsetException(
                 "Undefined offset $offset."
             );
@@ -53,7 +55,7 @@ class CompositeKeyArray implements \ArrayAccess
 
         return $this->walkThroughOffsets(
             $this->array,
-            function &($array, $offset) {
+            function ($array, $offset) {
                 return $array[$offset];
             },
             $this->undefinedOffsetAction
@@ -76,10 +78,10 @@ class CompositeKeyArray implements \ArrayAccess
         ) {
             $value = empty($this->offsets) ? $this->value : [];
 
-            if (!empty($offset)) {
-                $array[$offset] = $value;
+            if ($offset !== []) {
+                $array[$offset] =& $value;
             } else {
-                $array[] = $value;
+                $array[] =& $value;
             }
 
             if (empty($this->offsets)) {
@@ -87,7 +89,7 @@ class CompositeKeyArray implements \ArrayAccess
             }
 
             return $this->walkThroughOffsets(
-                $array,
+                $value,
                 $baseCaseAction,
                 $offsetNotExistsAction
             );
@@ -125,7 +127,7 @@ class CompositeKeyArray implements \ArrayAccess
     ) {
         $offset = array_shift($this->offsets);
 
-        if (isset($array[$offset])) {
+        if (is_scalar($offset) && isset($array[$offset])) {
             if (empty($this->offsets)) {
                 return $baseCaseAction($array, $offset);
             }
