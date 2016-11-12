@@ -1,5 +1,6 @@
 {
     "name": "sevavietl/arrays",
+    "description": "This is a collection of array wrappers",
     "type": "library",
     "license": "MIT",
     "authors": [

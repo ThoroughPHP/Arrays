@@ -2,10 +2,10 @@
 
 namespace Sevavietl\Arrays;
 
-class XPathKeyArray extends SeparatedKeyArray
+class DottedKeyArray extends SeparatedKeyArray
 {
     protected function getSeparator()
     {
-        return '/';
+        return '.';
     }
 }
