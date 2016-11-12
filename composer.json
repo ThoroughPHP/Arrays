@@ -2,6 +2,9 @@
     "name": "sevavietl/arrays",
     "description": "This is a collection of array wrappers",
     "type": "library",
+    "keywords": [
+        "arrays"
+    ],
     "license": "MIT",
     "authors": [
         {
