@@ -2,34 +2,14 @@
 
 namespace Sevavietl\Arrays;
 
-class CompositeKeyArray implements \ArrayAccess
+class CompositeKeyArray extends BaseArray
 {
-    protected $array;
+    protected $container;
     protected $undefinedOffsetAction;
-
-    public function __construct(array $array = [])
-    {
-        $this->array = $array;
-
-        $this->undefinedOffsetAction = function ($array, $offset) {
-            $offset = json_encode($offset);
-
-            throw new UndefinedOffsetException(
-                "Undefined offset $offset."
-            );
-        };
-    }
-
-    public function setUndefinedOffsetAction(Callable $undefinedOffsetAction)
-    {
-        $this->undefinedOffsetAction = $undefinedOffsetAction;
-
-        return $this;
-    }
 
     public function toArray()
     {
-        return $this->array;
+        return $this->container;
     }
     
     protected $offsets;
@@ -39,7 +19,7 @@ class CompositeKeyArray implements \ArrayAccess
         $this->setOffsets($offset);
 
         return $this->walkThroughOffsets(
-            $this->array,
+            $this->container,
             function ($array, $offset) {
                 return isset($array[$offset]);
             },
@@ -54,7 +34,7 @@ class CompositeKeyArray implements \ArrayAccess
         $this->setOffsets($offset);
 
         return $this->walkThroughOffsets(
-            $this->array,
+            $this->container,
             function ($array, $offset) {
                 return $array[$offset];
             },
@@ -96,7 +76,7 @@ class CompositeKeyArray implements \ArrayAccess
         };
 
         return $this->walkThroughOffsets(
-            $this->array,
+            $this->container,
             $baseCaseAction,
             $offsetNotExistsAction
         );
@@ -107,7 +87,7 @@ class CompositeKeyArray implements \ArrayAccess
         $this->setOffsets($offset);
 
         return $this->walkThroughOffsets(
-            $this->array,
+            $this->container,
             function (&$array, $offset) {
                 unset($array[$offset]);
             },

@@ -11,6 +11,7 @@ Table of Contents
     - [4. offsetUnset](#composite-key-array-offset-unset)
 * [XPath Key Array](#xpath-key-array)
 * [Dotted Key Array](#dotted-key-array)
+* [One-off Array](#one-off-array)
 
 <a name="composite-key-array"></a>
 
@@ -176,4 +177,13 @@ Compared to `CompositeKeyArray`, `XPathKeyArray` has some limitations:
 Compared to `CompositeKeyArray`, `DottedKeyArray` has some limitations:
 
 1. You cannot use keys with `.` in them.
-2. You cannot use `null` as key. 
+2. You cannot use `null` as key.
+
+<a name="one-off-array"></a>
+
+## One-off Array
+
+Sometimes you want to get value from an array by key and `unset` this key after that. The `OneOffArray` class helps you with this.
+
+Again this class can be used in combination with `CompositeKeyArray` or its descendents: `XPathKeyArray` or `DottedKeyArray`.
+Actually, it can be used in combination with any object that implemets `ArrayAccess`.
