@@ -45,6 +45,11 @@ class BaseArray implements \ArrayAccess
         return $this;
     }
 
+    public function toArray()
+    {
+        return $this->container;
+    }
+
     public function offsetExists($offset) {
         return isset($this->container[$offset]);
     }

@@ -4,14 +4,6 @@ namespace Sevavietl\Arrays;
 
 class CompositeKeyArray extends BaseArray
 {
-    protected $container;
-    protected $undefinedOffsetAction;
-
-    public function toArray()
-    {
-        return $this->container;
-    }
-    
     protected $offsets;
 
     public function offsetExists($offset)
