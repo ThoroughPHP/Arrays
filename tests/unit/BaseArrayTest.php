@@ -3,6 +3,7 @@
 namespace Sevavietl\Arrays\Tests\Unit;
 
 use Sevavietl\Arrays\BaseArray;
+use Sevavietl\Arrays\UndefinedOffsetException;
 
 class BaseArrayTest extends \TestCase
 {
@@ -39,5 +40,13 @@ class BaseArrayTest extends \TestCase
             ['foo'],
             [new \StdClass],
         ];
+    }
+
+    public function testThrowsExceptionOnUndefinedOffset()
+    {
+        $this->expectException(UndefinedOffsetException::class);
+
+        $arr = new BaseArray([1, 2, 3]);
+        $arr[3];
     }
 }
