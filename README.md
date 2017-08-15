@@ -162,7 +162,7 @@ Compared to `CompositeKeyArray`, `XPathKeyArray` has some limitations:
 
 ## Dotted Key Array
 
-**This is not a real xpath!** This class instead of array-like key users string of keys delimited with `/`.
+This class instead of array-like key users string of keys delimited with `.`.
 
 ```php
     $array = new DottedKeyArray([
