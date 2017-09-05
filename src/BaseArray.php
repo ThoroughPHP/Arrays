@@ -59,7 +59,9 @@ class BaseArray implements \ArrayAccess
             return $this->container[$offset];
         }
 
-        return ($this->undefinedOffsetAction)($this->container, $offset);
+        $undefinedOffsetAction = $this->undefinedOffsetAction;
+
+        return $undefinedOffsetAction($this->container, $offset);
     }
 
     public function offsetSet($offset, $value) {
