@@ -1,5 +1,9 @@
 # Array Extensions
 
+[![Build Status](https://travis-ci.com/Sevavietl/Arrays.svg?branch=master)](https://travis-ci.com/Sevavietl/Arrays)
+[![Coverage Status](https://coveralls.io/repos/github/Sevavietl/Arrays/badge.svg)](https://coveralls.io/github/Sevavietl/Arrays)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 This is a collection of array wrappers.
 
 Table of Contents
