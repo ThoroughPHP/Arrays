@@ -2,25 +2,23 @@
 
 namespace Sevavietl\Arrays\Tests\Unit;
 
+use PHPUnit\Framework\TestCase;
 use Sevavietl\Arrays\CompositeKeyArray;
 use Sevavietl\Arrays\UndefinedOffsetException;
 
-class CompositeKeyArrayTest extends \TestCase
+class CompositeKeyArrayTest extends TestCase
 {
     /**
      * @dataProvider arrayDataProviderForIssetTesting
      */
-    public function testOffsetExists($array, $offset, $exists)
+    public function testOffsetExists($array, $offset, bool $exists): void
     {
         $array = new CompositeKeyArray($array);
 
-        $this->assertEquals(
-            $exists,
-            isset($array[$offset])
-        );
+        $this->assertEquals($exists, isset($array[$offset]));
     }
 
-    public function arrayDataProviderForIssetTesting()
+    public function arrayDataProviderForIssetTesting(): array
     {
         return [
             [[1], 0, true],
@@ -41,17 +39,14 @@ class CompositeKeyArrayTest extends \TestCase
     /**
      * @dataProvider arrayDataProviderForGetTesting
      */
-    public function testOffsetGet($array, $offset, $value)
+    public function testOffsetGet($array, $offset, $value): void
     {
         $array = new CompositeKeyArray($array);
 
-        $this->assertEquals(
-            $value,
-            $array[$offset]
-        );
+        $this->assertEquals($value, $array[$offset]);
     }
 
-    public function arrayDataProviderForGetTesting()
+    public function arrayDataProviderForGetTesting(): array
     {
         return [
             [[1], 0, 1],
@@ -63,11 +58,10 @@ class CompositeKeyArrayTest extends \TestCase
         ];
     }
 
-    /**
-     * @expectedException Sevavietl\Arrays\UndefinedOffsetException
-     */
-    public function testOffsetGetThrowsException()
+    public function testOffsetGetThrowsException(): void
     {
+        $this->expectException(UndefinedOffsetException::class);
+
         $array = new CompositeKeyArray();
 
         $value = $array[['foo', 'bar']];
@@ -76,19 +70,15 @@ class CompositeKeyArrayTest extends \TestCase
     /**
      * @dataProvider arrayDataProviderForSetTesting
      */
-    public function testOffsetSet($array, $offset, $value)
+    public function testOffsetSet($array, $offset, $value): void
     {
         $array = new CompositeKeyArray($array);
-
         $array[$offset] = $value;
 
-        $this->assertEquals(
-            $value,
-            $array[$offset]
-        );
+        $this->assertEquals($value, $array[$offset]);
     }
 
-    public function arrayDataProviderForSetTesting()
+    public function arrayDataProviderForSetTesting(): array
     {
         return [
             [[], 0, 1],
@@ -96,52 +86,36 @@ class CompositeKeyArrayTest extends \TestCase
         ];
     }
 
-    public function testOffsetSetEdgeCases()
+    public function testOffsetSetEdgeCases(): void
     {
         $array = new CompositeKeyArray();
-
         $array[[[]]] = 'foo';
 
-        $this->assertEquals(
-            'foo',
-            $array[0]
-        );
+        $this->assertEquals('foo', $array[0]);
 
         $array = new CompositeKeyArray();
-
         $array[[1, [], 2]] = 3;
 
-        $this->assertEquals(
-            3,
-            $array[[1, 0, 2]]
-        );
+        $this->assertEquals(3, $array[[1, 0, 2]]);
 
         $array = new CompositeKeyArray();
-
         $array[[1, [], [], [], 2]] = 3;
 
-        $this->assertEquals(
-            3,
-            $array[[1, 0, 0, 0, 2]]
-        );
+        $this->assertEquals(3, $array[[1, 0, 0, 0, 2]]);
     }
 
     /**
      * @dataProvider arrayDataProviderForUnsetTesting
      */
-    public function testOffsetUnset($array, $offset, $arrayAfterUnset)
+    public function testOffsetUnset($array, $offset, $arrayAfterUnset): void
     {
         $array = new CompositeKeyArray($array);
-
         unset($array[$offset]);
 
-        $this->assertEquals(
-            $arrayAfterUnset,
-            $array->toArray()
-        );
+        $this->assertEquals($arrayAfterUnset, $array->toArray());
     }
 
-    public function arrayDataProviderForUnsetTesting()
+    public function arrayDataProviderForUnsetTesting(): array
     {
         return [
             [[1], 0, []],
@@ -157,7 +131,7 @@ class CompositeKeyArrayTest extends \TestCase
         ];
     }
 
-    public function testItIsIterable()
+    public function testItIsIterable(): void
     {
         $arr = new CompositeKeyArray($initial = [
             'foo' => ['bar' => ['baz']],

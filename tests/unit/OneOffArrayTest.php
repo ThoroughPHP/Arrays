@@ -2,27 +2,24 @@
 
 namespace Sevavietl\Arrays\Tests\Unit;
 
+use PHPUnit\Framework\TestCase;
 use Sevavietl\Arrays\OneOffArray;
 use Sevavietl\Arrays\CompositeKeyArray;
 
-class OneOffArrayTest extends \TestCase
+class OneOffArrayTest extends TestCase
 {
     /**
      * @dataProvider arrayDataProviderForGetTesting
      */
-    public function testOffsetGet($array, $offset, $value)
+    public function testOffsetGet($array, $offset, $value): void
     {
         $array = new OneOffArray($array);
 
-        $this->assertEquals(
-            $value,
-            $array[$offset]
-        );
-
+        $this->assertEquals($value, $array[$offset]);
         $this->assertFalse(isset($array[$offset]));
     }
 
-    public function arrayDataProviderForGetTesting()
+    public function arrayDataProviderForGetTesting(): array
     {
         return [
             [[1], 0, 1],
@@ -33,7 +30,7 @@ class OneOffArrayTest extends \TestCase
         ];
     }
 
-    public function testItIsIterable()
+    public function testItIsIterable(): void
     {
         $arr = new OneOffArray($initial = [1, 2, 3]);
 

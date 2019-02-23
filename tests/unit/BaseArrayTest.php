@@ -2,20 +2,21 @@
 
 namespace Sevavietl\Arrays\Tests\Unit;
 
+use PHPUnit\Framework\TestCase;
 use Sevavietl\Arrays\BaseArray;
 use Sevavietl\Arrays\UndefinedOffsetException;
 
-class BaseArrayTest extends \TestCase
+class BaseArrayTest extends TestCase
 {
     /**
      * @dataProvider instantiationDataProvider
      */
-    public function testInstantiation($argument)
+    public function testInstantiation($argument): void
     {
         new BaseArray($argument);
     }
 
-    public function instantiationDataProvider()
+    public function instantiationDataProvider(): array
     {
         return [
             [[1, 2, 3]],
@@ -25,15 +26,15 @@ class BaseArrayTest extends \TestCase
 
     /**
      * @dataProvider instantiationThrowsExceptionDataProvider
-     *
-     * @expectedException InvalidArgumentException
      */
-    public function testInstantiationThrowsException($argument)
+    public function testInstantiationThrowsException($argument): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         new BaseArray($argument);
     }
 
-    public function instantiationThrowsExceptionDataProvider()
+    public function instantiationThrowsExceptionDataProvider(): array
     {
         return [
             [1],
@@ -42,7 +43,7 @@ class BaseArrayTest extends \TestCase
         ];
     }
 
-    public function testThrowsExceptionOnUndefinedOffset()
+    public function testThrowsExceptionOnUndefinedOffset(): void
     {
         $this->expectException(UndefinedOffsetException::class);
 
@@ -50,7 +51,7 @@ class BaseArrayTest extends \TestCase
         $arr[3];
     }
 
-    public function testItIsIterable()
+    public function testItIsIterable(): void
     {
         $arr = new BaseArray($initial = [1, 2, 3]);
 

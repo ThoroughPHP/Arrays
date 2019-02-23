@@ -2,26 +2,24 @@
 
 namespace Sevavietl\Arrays\Tests\Unit;
 
+use PHPUnit\Framework\TestCase;
 use Sevavietl\Arrays\DottedKeyArray;
 use Sevavietl\Arrays\UndefinedOffsetException;
 use Sevavietl\Arrays\InvalidOffsetTypeException;
 
-class DottedKeyArrayTest extends \TestCase
+class DottedKeyArrayTest extends TestCase
 {
     /**
      * @dataProvider arrayDataProviderForIssetTesting
      */
-    public function testOffsetExists($array, $offset, $exists)
+    public function testOffsetExists($array, $offset, $exists): void
     {
         $array = new DottedKeyArray($array);
 
-        $this->assertEquals(
-            $exists,
-            isset($array[$offset])
-        );
+        $this->assertEquals($exists, isset($array[$offset]));
     }
 
-    public function arrayDataProviderForIssetTesting()
+    public function arrayDataProviderForIssetTesting(): array
     {
         return [
             [[1], 0, true],
@@ -39,17 +37,14 @@ class DottedKeyArrayTest extends \TestCase
     /**
      * @dataProvider arrayDataProviderForGetTesting
      */
-    public function testOffsetGet($array, $offset, $value)
+    public function testOffsetGet($array, $offset, $value): void
     {
         $array = new DottedKeyArray($array);
 
-        $this->assertEquals(
-            $value,
-            $array[$offset]
-        );
+        $this->assertEquals($value, $array[$offset]);
     }
 
-    public function arrayDataProviderForGetTesting()
+    public function arrayDataProviderForGetTesting(): array
     {
         return [
             [[1], 0, 1],
@@ -60,21 +55,19 @@ class DottedKeyArrayTest extends \TestCase
         ];
     }
 
-    /**
-     * @expectedException Sevavietl\Arrays\UndefinedOffsetException
-     */
-    public function testOffsetGetThrowsUndefinedOffsetException()
+    public function testOffsetGetThrowsUndefinedOffsetException(): void
     {
+        $this->expectException(UndefinedOffsetException::class);
+
         $array = new DottedKeyArray();
 
         $value = $array['foo.bar'];
     }
 
-    /**
-     * @expectedException Sevavietl\Arrays\InvalidOffsetTypeException
-     */
-    public function testOffsetGetThrowsInvalidOffsetTypeException()
+    public function testOffsetGetThrowsInvalidOffsetTypeException(): void
     {
+        $this->expectException(InvalidOffsetTypeException::class);
+
         $array = new DottedKeyArray();
 
         $value = $array[['foo', 'bar']];
@@ -83,19 +76,16 @@ class DottedKeyArrayTest extends \TestCase
     /**
      * @dataProvider arrayDataProviderForSetTesting
      */
-    public function testOffsetSet($array, $offset, $value)
+    public function testOffsetSet($array, $offset, $value): void
     {
         $array = new DottedKeyArray($array);
 
         $array[$offset] = $value;
 
-        $this->assertEquals(
-            $value,
-            $array[$offset]
-        );
+        $this->assertEquals($value, $array[$offset]);
     }
 
-    public function arrayDataProviderForSetTesting()
+    public function arrayDataProviderForSetTesting(): array
     {
         return [
             [[], 0, 1],
@@ -103,52 +93,37 @@ class DottedKeyArrayTest extends \TestCase
         ];
     }
 
-    public function testOffsetSetEdgeCases()
+    public function testOffsetSetEdgeCases(): void
     {
         $array = new DottedKeyArray();
-
         $array['[]'] = 'foo';
 
-        $this->assertEquals(
-            'foo',
-            $array[0]
-        );
+        $this->assertEquals('foo', $array[0]);
 
         $array = new DottedKeyArray();
-
         $array['1.[].2'] = 3;
 
-        $this->assertEquals(
-            3,
-            $array['1.0.2']
-        );
+        $this->assertEquals(3, $array['1.0.2']);
 
         $array = new DottedKeyArray();
-
         $array['1.[].[].[].2'] = 3;
 
-        $this->assertEquals(
-            3,
-            $array['1.0.0.0.2']
-        );
+        $this->assertEquals(3, $array['1.0.0.0.2']);
     }
 
     /**
      * @dataProvider arrayDataProviderForUnsetTesting
      */
-    public function testOffsetUnset($array, $offset, $arrayAfterUnset)
+    public function testOffsetUnset($array, $offset, $arrayAfterUnset): void
     {
         $array = new DottedKeyArray($array);
 
         unset($array[$offset]);
 
-        $this->assertEquals(
-            $arrayAfterUnset,
-            $array->toArray()
-        );
+        $this->assertEquals($arrayAfterUnset, $array->toArray());
     }
 
-    public function arrayDataProviderForUnsetTesting()
+    public function arrayDataProviderForUnsetTesting(): array
     {
         return [
             [[1], 0, []],
