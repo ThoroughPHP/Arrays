@@ -156,4 +156,18 @@ class CompositeKeyArrayTest extends \TestCase
             [['foo' => ['bar' => ['baz']]], ['foo', 'bar', 0], ['foo' => ['bar' => []]]],
         ];
     }
+
+    public function testItIsIterable()
+    {
+        $arr = new CompositeKeyArray($initial = [
+            'foo' => ['bar' => ['baz']],
+            'quux' => 'foobar',
+        ]);
+
+        foreach ($arr as $key => $value) {
+            $this->assertEquals($initial[$key], $value);
+        }
+
+        $this->assertEquals($initial, $arr->toArray());
+    }
 }

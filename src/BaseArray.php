@@ -2,10 +2,12 @@
 
 namespace Sevavietl\Arrays;
 
-class BaseArray implements \ArrayAccess
+class BaseArray implements \ArrayAccess, \Iterator
 {
     protected $container;
     protected $undefinedOffsetAction;
+
+    protected $iteration = 0;
 
     public function __construct($array = [])
     {
@@ -65,7 +67,7 @@ class BaseArray implements \ArrayAccess
     }
 
     public function offsetSet($offset, $value) {
-        if (is_null($offset)) {
+        if (null === $offset) {
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
@@ -74,5 +76,32 @@ class BaseArray implements \ArrayAccess
 
     public function offsetUnset($offset) {
         unset($this->container[$offset]);
+    }
+
+    public function current()
+    {
+        return $this->offsetGet($this->key());
+    }
+
+    public function next()
+    {
+        $this->iteration += 1;
+        next($this->container);
+    }
+
+    public function key()
+    {
+        return \key($this->container);
+    }
+
+    public function valid()
+    {
+        return $this->iteration < \count($this->container);
+    }
+
+    public function rewind()
+    {
+        $this->iteration = 0;
+        reset($this->container);
     }
 }

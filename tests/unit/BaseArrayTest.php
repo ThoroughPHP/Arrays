@@ -49,4 +49,15 @@ class BaseArrayTest extends \TestCase
         $arr = new BaseArray([1, 2, 3]);
         $arr[3];
     }
+
+    public function testItIsIterable()
+    {
+        $arr = new BaseArray($initial = [1, 2, 3]);
+
+        foreach ($arr as $key => $value) {
+            $this->assertEquals($initial[$key], $value);
+        }
+
+        $this->assertEquals($initial, $arr->toArray());
+    }
 }
