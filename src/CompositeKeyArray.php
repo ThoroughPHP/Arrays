@@ -6,6 +6,8 @@ class CompositeKeyArray extends BaseArray
 {
     protected $offsets;
 
+    private $value;
+
     public function offsetExists($offset)
     {
         $this->setOffsets($offset);

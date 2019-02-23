@@ -39,7 +39,7 @@ class BaseArrayTest extends TestCase
         return [
             [1],
             ['foo'],
-            [new \StdClass],
+            [new \stdClass],
         ];
     }
 
