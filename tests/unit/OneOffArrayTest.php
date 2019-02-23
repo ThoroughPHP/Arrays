@@ -1,10 +1,10 @@
 <?php
 
-namespace Sevavietl\Arrays\Tests\Unit;
+namespace ThoroughPHP\Arrays\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use Sevavietl\Arrays\OneOffArray;
-use Sevavietl\Arrays\CompositeKeyArray;
+use ThoroughPHP\Arrays\OneOffArray;
+use ThoroughPHP\Arrays\CompositeKeyArray;
 
 class OneOffArrayTest extends TestCase
 {

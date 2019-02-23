@@ -1,6 +1,6 @@
 <?php
 
-namespace Sevavietl\Arrays;
+namespace ThoroughPHP\Arrays;
 
 class CompositeKeyArray extends BaseArray
 {

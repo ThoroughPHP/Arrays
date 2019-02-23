@@ -1,10 +1,10 @@
 <?php
 
-namespace Sevavietl\Arrays\Tests\Unit;
+namespace ThoroughPHP\Arrays\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use Sevavietl\Arrays\CompositeKeyArray;
-use Sevavietl\Arrays\UndefinedOffsetException;
+use ThoroughPHP\Arrays\CompositeKeyArray;
+use ThoroughPHP\Arrays\UndefinedOffsetException;
 
 class CompositeKeyArrayTest extends TestCase
 {

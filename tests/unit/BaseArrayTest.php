@@ -1,10 +1,10 @@
 <?php
 
-namespace Sevavietl\Arrays\Tests\Unit;
+namespace ThoroughPHP\Arrays\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use Sevavietl\Arrays\BaseArray;
-use Sevavietl\Arrays\UndefinedOffsetException;
+use ThoroughPHP\Arrays\BaseArray;
+use ThoroughPHP\Arrays\UndefinedOffsetException;
 
 class BaseArrayTest extends TestCase
 {

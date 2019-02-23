@@ -1,6 +1,6 @@
 <?php
 
-namespace Sevavietl\Arrays;
+namespace ThoroughPHP\Arrays;
 
 abstract class SeparatedKeyArray extends CompositeKeyArray
 {

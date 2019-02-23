@@ -1,11 +1,11 @@
 <?php
 
-namespace Sevavietl\Arrays\Tests\Unit;
+namespace ThoroughPHP\Arrays\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use Sevavietl\Arrays\DottedKeyArray;
-use Sevavietl\Arrays\UndefinedOffsetException;
-use Sevavietl\Arrays\InvalidOffsetTypeException;
+use ThoroughPHP\Arrays\DottedKeyArray;
+use ThoroughPHP\Arrays\UndefinedOffsetException;
+use ThoroughPHP\Arrays\InvalidOffsetTypeException;
 
 class DottedKeyArrayTest extends TestCase
 {

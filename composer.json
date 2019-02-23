@@ -1,5 +1,5 @@
 {
-    "name": "sevavietl/arrays",
+    "name": "thorough-php/arrays",
     "description": "This is a collection of array wrappers",
     "type": "library",
     "keywords": [
@@ -22,12 +22,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Sevavietl\\Arrays\\": "src/"
+            "ThoroughPHP\\Arrays\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Sevavietl\\Arrays\\Tests\\Unit\\": "tests/unit/"
+            "ThoroughPHP\\Arrays\\Tests\\Unit\\": "tests/unit/"
         }
     }
 }

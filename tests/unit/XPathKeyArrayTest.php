@@ -1,11 +1,11 @@
 <?php
 
-namespace Sevavietl\Arrays\Tests\Unit;
+namespace ThoroughPHP\Arrays\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use Sevavietl\Arrays\XPathKeyArray;
-use Sevavietl\Arrays\UndefinedOffsetException;
-use Sevavietl\Arrays\InvalidOffsetTypeException;
+use ThoroughPHP\Arrays\XPathKeyArray;
+use ThoroughPHP\Arrays\UndefinedOffsetException;
+use ThoroughPHP\Arrays\InvalidOffsetTypeException;
 
 class XPathKeyArrayTest extends TestCase
 {
