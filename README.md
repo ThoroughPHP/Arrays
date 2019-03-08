@@ -17,6 +17,7 @@ Table of Contents
 * [XPath Key Array](#xpath-key-array)
 * [Dotted Key Array](#dotted-key-array)
 * [One-off Array](#one-off-array)
+* [Write-once Array](#write-once-array)
 
 <a name="composite-key-array"></a>
 
@@ -192,3 +193,26 @@ Sometimes you want to get value from an array by key and `unset` this key after 
 
 Again this class can be used in combination with `CompositeKeyArray` or its descendents: `XPathKeyArray` or `DottedKeyArray`.
 Actually, it can be used in combination with any object that implemets `ArrayAccess`.
+
+<a name="write-once-array"></a>
+
+## Write-once Array
+
+If you want to be sure that each offset in your array would be written only once you can use `WriteOnceArray`. If you try to set one particular offset more than one time `IllegalOffsetException` will be thrown:
+
+```php
+$array = new WriteOnceArray();
+
+$array['foo'] = 'bar'; // => OK
+$array['foo'] = 'baz'; // => throws `IllegalOffsetException`
+```
+
+Because `offsetExists` method is used in order to ensure write-once behaviour, `offsetUnset` method call is illegal:
+
+```php
+$array = new WriteOnceArray([
+    'foo' => 'bar',
+]);
+
+unset($array['foo']); // => throws `IllegalOffsetUnsetMethodCallException`
+```
